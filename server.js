@@ -11,8 +11,10 @@ app.use(express.json());
 
 app.use('/email', emailRouter);
 
-// app.post('/sendemail', (req, res) => {
-
-// })
+app.get('/test', (req, res) => {
+    res.json({
+        message: "Test successful"
+    })
+})
 
 app.listen(PORT);

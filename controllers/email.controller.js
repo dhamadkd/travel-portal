@@ -18,15 +18,19 @@ const transporter = nodemailer.createTransport({
 
 // async..await is not allowed in global scope, must use a wrapper
 async function main(req, res) {
-  // send mail with defined transport object
+    console.log(JSON.stringify(req.body));
+    const reqBody = req.body;
+    const emailText = `Name : ${reqBody.txiName} Email: ${reqBody.txiEmail} Phone: ${reqBody.txiPhone} CheckDate: ${reqBody.check_date} Adults: ${reqBody.txiAdults} Children: ${reqBody.txiChildren} Query: ${reqBody.txaQuery}`;
+  console.log(emailText);
+  //  send mail with defined transport object
   const info = await transporter.sendMail({
     from: process.env.GMAIL_USER, // sender address
     to: "contact@hookatrip.com", // list of receivers
     subject: "New Query from hookatrip landing page", // Subject line
-    text: req.body.text, // plain text body
+    text: emailText, // plain text body
   });
 
-  console.log(`Message sent for text ${req.body.text}`);
+  console.log(`Message sent for text ${emailText}`);
   // Message sent: <b658f8ca-6296-ccf4-8306-87d57a0b4321@example.com>
 
   //

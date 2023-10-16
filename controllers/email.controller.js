@@ -21,7 +21,7 @@ async function main(req, res) {
     console.log(JSON.stringify(req.body));
     const reqBody = req.body;
     const emailText = `Name : ${reqBody.txiName} Email: ${reqBody.txiEmail} Phone: ${reqBody.txiPhone} CheckDate: ${reqBody.check_date} Adults: ${reqBody.txiAdults} Children: ${reqBody.txiChildren} Query: ${reqBody.txaQuery}`;
-  console.log(emailText);
+//   console.log(emailText);
   //  send mail with defined transport object
   const info = await transporter.sendMail({
     from: process.env.GMAIL_USER, // sender address

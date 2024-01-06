@@ -20,7 +20,8 @@ const transporter = nodemailer.createTransport({
 async function main(req, res) {
     console.log(JSON.stringify(req.body));
     const reqBody = req.body;
-    const emailText = `Name : ${reqBody.txiName} Email: ${reqBody.txiEmail} Phone: ${reqBody.txiPhone} CheckDate: ${reqBody.check_date} Adults: ${reqBody.txiAdults} Children: ${reqBody.txiChildren} Query: ${reqBody.txaQuery}`;
+    // const emailText = `Name : ${reqBody.txiName} Email: ${reqBody.txiEmail} Phone: ${reqBody.txiPhone} CheckDate: ${reqBody.check_date} Adults: ${reqBody.txiAdults} Children: ${reqBody.txiChildren} Query: ${reqBody.txaQuery}`;
+    const emailText = `Name : ${reqBody.name} Phone: ${reqBody.phone} Message: ${reqBody.message}`;
 //   console.log(emailText);
   //  send mail with defined transport object
   const info = await transporter.sendMail({
@@ -38,8 +39,10 @@ async function main(req, res) {
   //       Or you can use the "preview-email" npm package to preview emails locally in browsers and iOS Simulator
   //       <https://github.com/forwardemail/preview-email>
   //
-  res.status(200).json({
-    message: "Success"
+  setTimeout( () => {
+    res.status(200).json({
+        message: "Success"
+      }), 2000
   })
 }
 
